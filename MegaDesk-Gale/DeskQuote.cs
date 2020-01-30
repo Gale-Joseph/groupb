@@ -4,6 +4,7 @@
  * Most of these functions are executed when the final quote is displayed in DisplayQuote.cs
  */
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +17,17 @@ namespace MegaDesk_Gale
     public class DeskQuote
     {
         /*member variables: */
-        string quoteDate = DateTime.Now.ToString();
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public string currentDate;
-
-        /* standard delivery is 14 days and accrues no extra costs;
-         * however, if deliveryTime is different, the cost will be
-         * adjusted in the function getDeliveryPrice() listed below;*/
-        public int deliveryTime = 14;
+        public string currentDate; //set in the AddQuote form
+        public int deliveryTime = 14; //standard delivery is 14
 
         /*pricing structure variables:*/
         public int basePrice = 200;
         int saPrice = 1; //surface area price: $1 per square inch
         public int drawerPrice = 50;
         public int surfacePrice; //the price of the material for desk surface
-        public int deliveryPrice { get; set; }
+        //public int deliveryPrice = getDeliveryPrice(desk.Width, desk.Depth, this.deliveryTime);
 
         /*constructor*/
         public Desk desk { get; set; }
@@ -98,22 +94,27 @@ namespace MegaDesk_Gale
         {
            return this.desk.Width * this.desk.Depth;
         }
+
+        /*get price of surface based on material'*/
         public int getSurfacePrice(Desk desk)
         {
+            /*use (int)object.enumType to get numeric value of enum*/
             int surfacePrice = (int)desk.Surface;
             return surfacePrice;
         }
-        /* getTotal will be rewritten to get rid of "magic" numbers in price calculation;
-         * this will be the function that also stores the quote to quotes.json */
+
+       
         public int getTotal(Desk desk)
         {
             saPrice *= desk.Width * desk.Depth;
             drawerPrice *= desk.Drawers;
             surfacePrice = getSurfacePrice(desk);
-            deliveryPrice = 100;//wrong number, needs to be redone: getDeliveryPrice(desk.width,desk.depth,this.deliveryTime)
-            int total = basePrice + saPrice + drawerPrice + surfacePrice + deliveryPrice;            
-
+            int deliveryPrice = getDeliveryPrice(desk.Width, desk.Depth, this.deliveryTime);
+            int total = basePrice + saPrice + drawerPrice + surfacePrice + deliveryPrice;
             return total;
         }
+
+      
+
     }
 }

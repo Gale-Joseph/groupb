@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*This form displays the information from the submitted quote*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace MegaDesk_Gale
 {
     public partial class DisplayQuote : Form
     {
-        string b;
+       
         public DisplayQuote()
         {
             InitializeComponent();
@@ -29,6 +30,9 @@ namespace MegaDesk_Gale
         {
             
         } 
+
+        /*This function allows the quote object to be displayed*/
+        /*This function allows the quote object to be displayed*/
 
         public void getQuote(DeskQuote quote)
         {
