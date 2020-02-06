@@ -33,7 +33,9 @@ namespace MegaDesk_Gale
                 //change this to be put in gridview
                 string quoteString = quote.currentDate + " " + quote.firstName + " " + quote.lastName +
                     " " + quote.deliveryTime + " day delivery " + quote.desk.Surface + quote.getTotal(quote.desk);
+                
                 listBox1.Items.Add(quoteString);
+                listBox1.Items.Add(quote.GetRushOrder()[0,1]);
             }
             
         }

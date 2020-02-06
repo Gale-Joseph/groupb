@@ -26,84 +26,73 @@ namespace MegaDesk_Gale
 
         /*methods */
 
-/*        public int GetRushOrder()
+        /*Create GetRushOrder() method per assignment directions and return a multidimensional array*/
+        public int[,] GetRushOrder()
         {
             //read everything from text file and store in an array
-            try
+            string[] lines = System.IO.File.ReadAllLines(@"..\..\rushOrderPrices.txt");
+
+            //create a 3x3 multidemensional array
+            int[,] priceGrid = new int[3, 3];
+
+            //create a counter which will represent which integer from txt file is being stored
+            int lineCount = 0;
+
+            //cycle through rows first
+            for (int r = 0; r < 3; r++)
             {
-                int[,,] priceGrid =
+                //each row will have 3 columns to cycle through:
+                for(int c = 0; c < 3; c++)
                 {
+                    //populate priceGrid with value at current row and column
+                    //populate priceGrid from txt file based on current lineCount counter
+                    priceGrid[r, c] = int.Parse(lines[lineCount]);
 
-                }
-                for(int r = 0; r < 3; r++)
-                {
-                    for (int c = 0; c < 3; c++)
-                    {
-
-                    }
+                    //up the lineCount counter by 1
+                    lineCount++; 
                 }
             }
-            catch
-            {
 
-            }
-
-            *//*use nested loop to create 3x3 multidimensional array
-             * rushArray(row1,row2,row3)
-             * row1(col1,col2,col3)
-             * row2(col1,col2,col3)
-             * row3(col1,col2,col3)*//*
-            return 5;
-        }*/
+            //return the priceGrid for the purpose of extracting correct price in getDeliveryPrice
+            return priceGrid;
+        }
 
         /* getDeliveryPrice is not particularly written well and gets cumbersome to fill out, but
          * as of 1/30/20 it makes the program function correctly*/
-            public int getDeliveryPrice(int width, int depth, int deliveryTime)
+        public int getDeliveryPrice(int width, int depth, int deliveryTime)
         {
+            //cacluate the surface area from paramenters
             int sa = width * depth;
+
+            //create an empty total for population
             int total;
+
+            //determine column for 2d array; prices based on assignment specs
+            int col;
+            if (sa < 1000)
+            {
+                col = 0;
+            }
+            else if(sa >=1000 && sa <= 2000)
+            {
+                col = 1;
+            }
+            else
+            {
+                col = 2;
+            }
+
+            //determine price based on delivery day from function paramter
             switch (deliveryTime)
             {
                 case 3:
-                    if (sa < 1000)
-                    {
-                        total = 60;
-                    }
-                    else if(sa >=1000 && sa <=2000){
-                        total = 70;
-                    }
-                    else
-                    {
-                        total = 80;
-                    }
+                    total = GetRushOrder()[0, col];
                     break;
                 case 5:
-                    if (sa < 1000)
-                    {
-                        total = 40;
-                    }
-                    else if (sa >= 1000 && sa <= 2000)
-                    {
-                        total = 50;
-                    }
-                    else
-                    {
-                        total = 60;
-                    }
+                    total = GetRushOrder()[1, col];
                     break;
                 case 7:
-                    if (sa < 1000)
-                    {
-                        total = 30;
-                    }
-                    else if (sa >= 1000 && sa <= 2000)
-                    {
-                        total = 35;
-                    }
-                    else
-                    {
-                        total = 40;
-                    }
+                    total = GetRushOrder()[2, col];
                     break;
                 default:
                     total = 0;
