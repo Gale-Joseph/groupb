@@ -21,11 +21,10 @@ namespace MegaDesk_Gale
         public SearchQuotes()
         {
             // start with all of the existing quotes (from quotes.json file)
-            //List<string> AllQuotesList = JsonConvert.DeserializeObject<List<string>>(@"..\..\quotes.json");
-
-            // need to figure out how to display quotes in GridView
             AllQuotes = new List<DeskQuote>();
 
+            //this chunk of code adds fake quotes to test the 
+            //search functions while still working on deserializing the json 
             DeskQuote deskQuoteOne = new DeskQuote();
             Desk deskOne = new Desk();
             deskOne.Surface = Material.laminate;
@@ -34,6 +33,7 @@ namespace MegaDesk_Gale
             AllQuotes.Add(deskQuoteOne);
             
             String filePath = @"..\..\Allquotes.json";
+            
             //Read all quotes if there are any on there
             StreamReader startReader = new StreamReader(filePath);
             var firstRead = startReader.ReadToEnd();
@@ -51,46 +51,18 @@ namespace MegaDesk_Gale
             Desk deskTwo = new Desk();
             deskTwo.Surface = Material.pine;
             quoteTwo.desk = deskTwo;
-
+            
             test.Add(quoteTwo);
 
-            //Write out all Quotes in a list
-            string result = JsonConvert.SerializeObject(test);
-            File.Delete(filePath);
-            File.AppendAllText(filePath, result);
-
-            //Read all quotes at one time from AllQuotes
-            StreamReader reader = new StreamReader(filePath);
-            var fileContents = reader.ReadToEnd();
-            List<DeskQuote> testTwo = JsonConvert.DeserializeObject<List<DeskQuote>>(fileContents);
-
-            //Write each quote one after another - Current implementation
-            var singlePath = @"..\..\quotes.json";
-            string resultOne = JsonConvert.SerializeObject(deskQuoteOne);
-            File.AppendAllText(singlePath, resultOne);
-
-            string resultTwo = JsonConvert.SerializeObject(quoteTwo);
-            File.AppendAllText(singlePath, resultTwo);
-            
-            //Try to read a single quote out of the file - does not work
-            StreamReader singleReader = new StreamReader(singlePath);
-            var singleContents = reader.ReadToEnd();
-            DeskQuote singleQuote = JsonConvert.DeserializeObject<DeskQuote>(singleContents);
-
-            //Try to read all the quotes from the file - does not work
-            List<DeskQuote> singleAll = JsonConvert.DeserializeObject<List<DeskQuote>>(singleContents);
-
-
-            //Write a single quote at a time to every line and read the lines
             //Write each quote one after another and add a new line each time
             var linePath = @"..\..\linequotes.json";
             string lineOne = JsonConvert.SerializeObject(deskQuoteOne);
             lineOne = lineOne + System.Environment.NewLine;
             File.AppendAllText(linePath, lineOne);
 
-            string lineTwo = JsonConvert.SerializeObject(quoteTwo);
-            lineTwo = lineTwo + System.Environment.NewLine;
-            File.AppendAllText(linePath, lineTwo);
+            //string lineTwo = JsonConvert.SerializeObject(quoteTwo);
+            //lineTwo = lineTwo + System.Environment.NewLine;
+            //File.AppendAllText(linePath, lineTwo);
 
             //Try to read all quotes out of the file - does work
             StreamReader lineReader = new StreamReader(linePath);
@@ -103,6 +75,7 @@ namespace MegaDesk_Gale
                 lineQuotes.Add(lineQuote);
             }
 
+            // BEGIN FILTERING QUOTES BY MATERIAL FOR SEARCH PAGE
             filterQuotes(test, Material.laminate);
             InitializeComponent();
 
