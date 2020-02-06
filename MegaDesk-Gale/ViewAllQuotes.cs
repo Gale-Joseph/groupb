@@ -24,5 +24,18 @@ namespace MegaDesk_Gale
                 this.Hide();
           
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<DeskQuote> allQuotes = Json.GetQuotes();
+            foreach(DeskQuote quote in allQuotes)
+            {
+                //change this to be put in gridview
+                string quoteString = quote.currentDate + " " + quote.firstName + " " + quote.lastName +
+                    " " + quote.deliveryTime + " day delivery " + quote.desk.Surface + quote.getTotal(quote.desk);
+                listBox1.Items.Add(quoteString);
+            }
+            
+        }
     }
 }

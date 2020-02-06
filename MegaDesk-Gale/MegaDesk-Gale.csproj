@@ -63,6 +63,7 @@
     <Compile Include="DisplayQuote.Designer.cs">
       <DependentUpon>DisplayQuote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Json.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

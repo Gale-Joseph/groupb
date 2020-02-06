@@ -32,13 +32,11 @@ namespace MegaDesk_Gale
         } 
 
         /*This function allows the quote object to be displayed*/
-        /*This function allows the quote object to be displayed*/
-
         public void getQuote(DeskQuote quote)
         {
             fnOut.Text = quote.firstName;
             lnOut.Text = quote.lastName;
-            basePrice.Text = "$" + quote.basePrice.ToString();
+            basePrice.Text = "$" + 200.ToString();
             dateOut.Text = quote.currentDate.ToString();
 
             widthOut.Text = "Width: " + quote.desk.Width.ToString() + " in";
@@ -60,6 +58,7 @@ namespace MegaDesk_Gale
             
         }
 
+        /*Takes user to main menu*/
         private void exitButton_Click(object sender, EventArgs e)
         {
             MainMenu viewMainMenu = new MainMenu();

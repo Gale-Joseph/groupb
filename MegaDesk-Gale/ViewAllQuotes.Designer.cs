@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -30,6 +32,8 @@
         {
             this.viewQuoteExitButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.displayQuotesBtn = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // viewQuoteExitButton
@@ -53,11 +57,32 @@
             this.label8.TabIndex = 53;
             this.label8.Text = "Quotes";
             // 
+            // displayQuotesBtn
+            // 
+            this.displayQuotesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayQuotesBtn.Location = new System.Drawing.Point(41, 61);
+            this.displayQuotesBtn.Name = "displayQuotesBtn";
+            this.displayQuotesBtn.Size = new System.Drawing.Size(178, 36);
+            this.displayQuotesBtn.TabIndex = 55;
+            this.displayQuotesBtn.Text = "Display Quotes";
+            this.displayQuotesBtn.UseVisualStyleBackColor = true;
+            this.displayQuotesBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(41, 119);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(512, 342);
+            this.listBox1.TabIndex = 56;
+            // 
             // ViewAllQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.displayQuotesBtn);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.viewQuoteExitButton);
             this.Name = "ViewAllQuotes";
@@ -71,5 +96,7 @@
 
         private System.Windows.Forms.Button viewQuoteExitButton;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button displayQuotesBtn;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

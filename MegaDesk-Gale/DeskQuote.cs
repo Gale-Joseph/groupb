@@ -1,9 +1,8 @@
 ﻿/* This class is used to calculate the price of a desk;
  * A DeskQuote object and Desk object are created in AddQuote.cs once the user starts entering data;
  * As the user enters data, that data is added to the DeskQuote object and Desk object;
- * Most of these functions are executed when the final quote is displayed in DisplayQuote.cs
+ * Most of these functions are executed when the final quote is displayed in DisplayQuote.cs(the next page)
  */
-
 
 using System;
 using System.Collections.Generic;
@@ -22,20 +21,44 @@ namespace MegaDesk_Gale
         public string currentDate; //set in the AddQuote form
         public int deliveryTime = 14; //standard delivery is 14
 
-        /*pricing structure variables:*/
-        public int basePrice = 200;
-        int saPrice = 1; //surface area price: $1 per square inch
-        public int drawerPrice = 50;
-        public int surfacePrice; //the price of the material for desk surface
-        //public int deliveryPrice = getDeliveryPrice(desk.Width, desk.Depth, this.deliveryTime);
-
         /*constructor*/
         public Desk desk { get; set; }
 
-        //methods  
+        /*methods */
+
+/*        public int GetRushOrder()
+        {
+            //read everything from text file and store in an array
+            try
+            {
+                int[,,] priceGrid =
+                {
+
+                }
+                for(int r = 0; r < 3; r++)
+                {
+                    for (int c = 0; c < 3; c++)
+                    {
+
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+
+            *//*use nested loop to create 3x3 multidimensional array
+             * rushArray(row1,row2,row3)
+             * row1(col1,col2,col3)
+             * row2(col1,col2,col3)
+             * row3(col1,col2,col3)*//*
+            return 5;
+        }*/
+
         /* getDeliveryPrice is not particularly written well and gets cumbersome to fill out, but
          * as of 1/30/20 it makes the program function correctly*/
-        public int getDeliveryPrice(int width, int depth, int deliveryTime)
+            public int getDeliveryPrice(int width, int depth, int deliveryTime)
         {
             int sa = width * depth;
             int total;
@@ -90,6 +113,7 @@ namespace MegaDesk_Gale
             return total;
         }
 
+        /*gets the surface area of desk for pricing*/
         public int getArea()
         {
            return this.desk.Width * this.desk.Depth;
@@ -104,11 +128,17 @@ namespace MegaDesk_Gale
         }
 
        
+        /*this creates a total based on desk object specs defined by user input*/
         public int getTotal(Desk desk)
         {
-            saPrice *= desk.Width * desk.Depth;
+            /*unit pricing structure variables:*/
+            int basePrice = 200;
+            int saPrice = 1; 
+            int drawerPrice = 50;
+
+        saPrice *= desk.Width * desk.Depth;
             drawerPrice *= desk.Drawers;
-            surfacePrice = getSurfacePrice(desk);
+            int surfacePrice = getSurfacePrice(desk);
             int deliveryPrice = getDeliveryPrice(desk.Width, desk.Depth, this.deliveryTime);
             int total = basePrice + saPrice + drawerPrice + surfacePrice + deliveryPrice;
             return total;

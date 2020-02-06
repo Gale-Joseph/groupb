@@ -4,6 +4,7 @@
  * The user exits the form by clicking "Submit" button on this form
  */
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -288,10 +289,12 @@ namespace MegaDesk_Gale
                 submitE.Text = "Please fill out all required fields";
 
             }
+            //if everything is filled in, proceed to processing:
             else
             {
                 //store quote to JSON file calling private function
                 storeToJson(newQuote);
+                Json.Store(newQuote);
                 
                 //send to confirmation page viewQuote
                 DisplayQuote viewQuote = new DisplayQuote();
@@ -306,6 +309,7 @@ namespace MegaDesk_Gale
 
         }
 
+        /*This button returns user to main menu*/
         private void exitAddQuote_Click(object sender, EventArgs e)
         {
             MainMenu viewMainMenu = new MainMenu();
@@ -316,6 +320,7 @@ namespace MegaDesk_Gale
         /*private function for storing to JSON file, only used in AddQuote.cs class*/
         private void storeToJson(DeskQuote quote)
         {
+            /*process of converting an object to a JSON file is 'serializing'*/
             string result = JsonConvert.SerializeObject(quote);
             System.IO.File.AppendAllText(@"..\..\quotes.json", result);
         }
