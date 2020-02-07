@@ -29,32 +29,39 @@ namespace MegaDesk_Gale
         /*Create GetRushOrder() method per assignment directions and return a multidimensional array*/
         public int[,] GetRushOrder()
         {
-            //read everything from text file and store in an array
-            string[] lines = System.IO.File.ReadAllLines(@"..\..\rushOrderPrices.txt");
-
             //create a 3x3 multidemensional array
             int[,] priceGrid = new int[3, 3];
 
-            //create a counter which will represent which integer from txt file is being stored
-            int lineCount = 0;
-
-            //cycle through rows first
-            for (int r = 0; r < 3; r++)
+            try
             {
-                //each row will have 3 columns to cycle through:
-                for(int c = 0; c < 3; c++)
+                //read everything from text file and store in an array
+                string[] lines = System.IO.File.ReadAllLines(@"..\..\rushOrderPrices.txt");
+
+                //create a counter which will represent which integer from txt file is being stored
+                int lineCount = 0;
+
+                //cycle through rows first
+                for (int r = 0; r < 3; r++)
                 {
-                    //populate priceGrid with value at current row and column
-                    //populate priceGrid from txt file based on current lineCount counter
-                    priceGrid[r, c] = int.Parse(lines[lineCount]);
+                    //each row will have 3 columns to cycle through:
+                    for (int c = 0; c < 3; c++)
+                    {
+                        //populate priceGrid with value at current row and column
+                        //populate priceGrid from txt file based on current lineCount counter
+                        priceGrid[r, c] = int.Parse(lines[lineCount]);
 
-                    //up the lineCount counter by 1
-                    lineCount++; 
+                        //up the lineCount counter by 1
+                        lineCount++;
+                    }
                 }
-            }
 
-            //return the priceGrid for the purpose of extracting correct price in getDeliveryPrice
-            return priceGrid;
+                //return the priceGrid for the purpose of extracting correct price in getDeliveryPrice
+                return priceGrid;
+            }
+            catch (Exception ex)
+            {
+                return priceGrid;
+            }
         }
 
         /* getDeliveryPrice is not particularly written well and gets cumbersome to fill out, but
