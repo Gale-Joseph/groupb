@@ -23,8 +23,7 @@ namespace MegaDesk_Gale
             // start with all of the existing quotes (from quotes.json file)
             AllQuotes = new List<DeskQuote>();
 
-            //this chunk of code adds fake quotes to test the 
-            //search functions while still working on deserializing the json 
+            //this chunk of code (lines 28-55) adds fake quotes for testing purposes 
             DeskQuote deskQuoteOne = new DeskQuote();
             Desk deskOne = new Desk();
             deskOne.Surface = Material.laminate;
@@ -54,6 +53,7 @@ namespace MegaDesk_Gale
             
             test.Add(quoteTwo);
 
+            //Save Quotes to Json file
             //Write each quote one after another and add a new line each time
             var linePath = @"..\..\linequotes.json";
             string lineOne = JsonConvert.SerializeObject(deskQuoteOne);
@@ -64,10 +64,10 @@ namespace MegaDesk_Gale
             //lineTwo = lineTwo + System.Environment.NewLine;
             //File.AppendAllText(linePath, lineTwo);
 
-            //Try to read all quotes out of the file - does work
+            //Create a list of all quotes by deserializing the Json quotes file - works!
             StreamReader lineReader = new StreamReader(linePath);
             List<DeskQuote> lineQuotes = new List<DeskQuote>();
-
+            
             String line;
             while((line = lineReader.ReadLine()) != null)
             {
@@ -75,7 +75,8 @@ namespace MegaDesk_Gale
                 lineQuotes.Add(lineQuote);
             }
 
-            // BEGIN FILTERING QUOTES BY MATERIAL FOR SEARCH PAGE
+            
+         // BEGIN FILTERING QUOTES BY MATERIAL FOR SEARCH PAGE
             filterQuotes(test, Material.laminate);
             InitializeComponent();
 
