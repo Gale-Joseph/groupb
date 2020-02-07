@@ -293,7 +293,7 @@ namespace MegaDesk_Gale
             else
             {
                 //store quote to JSON file calling private function
-                storeToJson(newQuote);
+                
                 Json.Store(newQuote);
                 
                 //send to confirmation page viewQuote
@@ -318,11 +318,6 @@ namespace MegaDesk_Gale
         }
 
         /*private function for storing to JSON file, only used in AddQuote.cs class*/
-        private void storeToJson(DeskQuote quote)
-        {
-            /*process of converting an object to a JSON file is 'serializing'*/
-            string result = JsonConvert.SerializeObject(quote);
-            System.IO.File.AppendAllText(@"..\..\quotes.json", result);
-        }
+
     }
 }

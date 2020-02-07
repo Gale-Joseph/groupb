@@ -16,7 +16,7 @@ namespace MegaDesk_Gale
         /*methods*/
         public static void Store(DeskQuote o)
         {
-            var filepath = @"..\..\linequotes.json";
+            var filepath = @"..\..\quotes.json";
             string quoteInfo = JsonConvert.SerializeObject(o);
             quoteInfo += System.Environment.NewLine;
             File.AppendAllText(filepath, quoteInfo);
@@ -24,14 +24,14 @@ namespace MegaDesk_Gale
 
         public static List<DeskQuote> GetQuotes()
         {
-            var filepath = @"..\..\linequotes.json";
+            var filepath = @"..\..\quotes.json";
             StreamReader lineReader = new StreamReader(filepath);
             List<DeskQuote> quoteList = new List<DeskQuote>();
             String line;
             while ((line = lineReader.ReadLine()) != null)
             {
-                DeskQuote lineQuote = JsonConvert.DeserializeObject<DeskQuote>(line);
-                quoteList.Add(lineQuote);
+                DeskQuote quotes = JsonConvert.DeserializeObject<DeskQuote>(line);
+                quoteList.Add(quotes);
             }
             return quoteList;
         }

@@ -51,9 +51,18 @@ namespace MegaDesk_Gale
             materialPrice.Text = "$" + quote.getSurfacePrice(quote.desk).ToString();
 
             rushOut.Text = (quote.deliveryTime).ToString();
-            rushPrice.Text = "$" + quote.getDeliveryPrice(quote.desk.Width, quote.desk.Depth, quote.deliveryTime).ToString();
+            if (quote.getDeliveryPrice(quote.desk.Width, quote.desk.Depth, quote.deliveryTime) < 0)
+            {
+                rushPrice.Text = "Error";
+                totalPrice.Text = "Error";
+            }
+            else
+            {
+                rushPrice.Text = "$" + quote.getDeliveryPrice(quote.desk.Width, quote.desk.Depth, quote.deliveryTime).ToString();
 
-            totalPrice.Text = "$" + quote.getTotal(quote.desk).ToString();
+                totalPrice.Text = "$" + quote.getTotal(quote.desk).ToString();
+            }  
+            
 
             
         }

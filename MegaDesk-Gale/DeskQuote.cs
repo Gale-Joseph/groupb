@@ -58,8 +58,21 @@ namespace MegaDesk_Gale
                 //return the priceGrid for the purpose of extracting correct price in getDeliveryPrice
                 return priceGrid;
             }
+            //fill up priceGrid with -1 so that getDeliveryPrice() will return -1
+            //if getDeliveryPrice()==-1 on DisplayQuote, then an error on DisplayQuote will show
             catch (Exception ex)
             {
+               
+                for (int r = 0; r < 3; r++)
+                {
+                    //each row will have 3 columns to cycle through:
+                    for (int c = 0; c < 3; c++)
+                    {
+
+                        priceGrid[r, c] = -1;
+
+                    }
+                }  
                 return priceGrid;
             }
         }
@@ -68,7 +81,7 @@ namespace MegaDesk_Gale
          * as of 1/30/20 it makes the program function correctly*/
         public int getDeliveryPrice(int width, int depth, int deliveryTime)
         {
-            //cacluate the surface area from paramenters
+            //calculate the surface area from paramenters
             int sa = width * depth;
 
             //create an empty total for population
@@ -94,6 +107,7 @@ namespace MegaDesk_Gale
             {
                 case 3:
                     total = GetRushOrder()[0, col];
+
                     break;
                 case 5:
                     total = GetRushOrder()[1, col];
