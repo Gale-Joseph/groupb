@@ -59,18 +59,6 @@ namespace MegaDesk_Gale
         private void updateGridView(List<DeskQuote> quotes)
         {
 
-            /*
-             * First Name
-             * Last Name
-             * Date
-             * Desk Specs
-             *  - width
-             *  - depth
-             *  - material
-             *  - drawers
-             * Total Price
-             * *
-             */
 
             DataTable data = new DataTable();
 
