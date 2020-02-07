@@ -51,6 +51,7 @@
             this.materialSelect.FormattingEnabled = true;
             this.materialSelect.ItemHeight = 13;
             this.materialSelect.Items.AddRange(new object[] {
+            "Select a material",
             "Laminate",
             "Oak",
             "Pine",

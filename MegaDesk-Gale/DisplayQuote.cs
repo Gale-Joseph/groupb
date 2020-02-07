@@ -61,9 +61,8 @@ namespace MegaDesk_Gale
         /*Takes user to main menu*/
         private void exitButton_Click(object sender, EventArgs e)
         {
-            MainMenu viewMainMenu = new MainMenu();
-            viewMainMenu.Show(this);
-            this.Hide();
+            Hide();
+            FormState.MainPage.Show();
         }
 
 

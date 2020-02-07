@@ -90,9 +90,8 @@ namespace MegaDesk_Gale
 
         private void viewQuoteExitButton_Click(object sender, EventArgs e)
         {
-            MainMenu viewMainMenu = new MainMenu();
-            viewMainMenu.Show(this);
-            this.Hide();
+            Hide();
+            FormState.MainPage.Show();
         }
     }
 }
