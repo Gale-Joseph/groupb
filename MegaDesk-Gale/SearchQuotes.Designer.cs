@@ -31,6 +31,8 @@
             this.viewQuoteExitButton = new System.Windows.Forms.Button();
             this.materialSelect = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.searchGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.searchGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // viewQuoteExitButton
@@ -49,8 +51,8 @@
             this.materialSelect.FormattingEnabled = true;
             this.materialSelect.ItemHeight = 13;
             this.materialSelect.Items.AddRange(new object[] {
-            "Oak",
             "Laminate",
+            "Oak",
             "Pine",
             "Rosewood",
             "Veneer"});
@@ -71,16 +73,26 @@
             this.label8.TabIndex = 54;
             this.label8.Text = "Search quotes by material";
             // 
+            // searchGridView
+            // 
+            this.searchGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.searchGridView.Location = new System.Drawing.Point(17, 112);
+            this.searchGridView.Name = "searchGridView";
+            this.searchGridView.Size = new System.Drawing.Size(655, 372);
+            this.searchGridView.TabIndex = 55;
+            // 
             // SearchQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.searchGridView);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.materialSelect);
             this.Controls.Add(this.viewQuoteExitButton);
             this.Name = "SearchQuotes";
             this.Text = "SearchQuotes";
+            ((System.ComponentModel.ISupportInitialize)(this.searchGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,5 +103,6 @@
         private System.Windows.Forms.Button viewQuoteExitButton;
         private System.Windows.Forms.ComboBox materialSelect;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView searchGridView;
     }
 }

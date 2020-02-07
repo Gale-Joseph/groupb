@@ -21,63 +21,7 @@ namespace MegaDesk_Gale
         public SearchQuotes()
         {
             // start with all of the existing quotes (from quotes.json file)
-            AllQuotes = new List<DeskQuote>();
-
-            //this chunk of code (lines 28-55) adds fake quotes for testing purposes 
-            DeskQuote deskQuoteOne = new DeskQuote();
-            Desk deskOne = new Desk();
-            deskOne.Surface = Material.laminate;
-            deskQuoteOne.desk = deskOne;
-
-            AllQuotes.Add(deskQuoteOne);
-            
-            String filePath = @"..\..\Allquotes.json";
-            
-            //Read all quotes if there are any on there
-            StreamReader startReader = new StreamReader(filePath);
-            var firstRead = startReader.ReadToEnd();
-            startReader.Close();
-            List<DeskQuote> test = JsonConvert.DeserializeObject<List<DeskQuote>>(firstRead);
-
-            //If test is null then there was no data in the file
-            if (test == null)
-            {
-                test = new List<DeskQuote>();
-            }
-
-            // Add a quote to the file
-            DeskQuote quoteTwo = new DeskQuote();
-            Desk deskTwo = new Desk();
-            deskTwo.Surface = Material.pine;
-            quoteTwo.desk = deskTwo;
-            
-            test.Add(quoteTwo);
-
-            //Save Quotes to Json file
-            //Write each quote one after another and add a new line each time
-            var linePath = @"..\..\linequotes.json";
-            string lineOne = JsonConvert.SerializeObject(deskQuoteOne);
-            lineOne = lineOne + System.Environment.NewLine;
-            File.AppendAllText(linePath, lineOne);
-
-            //string lineTwo = JsonConvert.SerializeObject(quoteTwo);
-            //lineTwo = lineTwo + System.Environment.NewLine;
-            //File.AppendAllText(linePath, lineTwo);
-
-            //Create a list of all quotes by deserializing the Json quotes file - works!
-            StreamReader lineReader = new StreamReader(linePath);
-            List<DeskQuote> lineQuotes = new List<DeskQuote>();
-            
-            String line;
-            while((line = lineReader.ReadLine()) != null)
-            {
-                DeskQuote lineQuote = JsonConvert.DeserializeObject<DeskQuote>(line);
-                lineQuotes.Add(lineQuote);
-            }
-
-            
-         // BEGIN FILTERING QUOTES BY MATERIAL FOR SEARCH PAGE
-            filterQuotes(test, Material.laminate);
+            AllQuotes = Json.GetQuotes();
             InitializeComponent();
 
             materialSelect.DataSource = Enum.GetValues(typeof(Material));
@@ -91,8 +35,8 @@ namespace MegaDesk_Gale
             Material material;
             Enum.TryParse<Material>(materialSelect.SelectedValue.ToString(), out material);
 
-            //List<DeskQuote> results = filterQuotes(AllQuotes, material);
-            //updateGridView(results);
+            List<DeskQuote> results = filterQuotes(AllQuotes, material);
+            updateGridView(results);
 
         }
 
@@ -114,7 +58,34 @@ namespace MegaDesk_Gale
         // Update the visual component with the new quotes
         private void updateGridView(List<DeskQuote> quotes)
         {
-            
+
+            /*
+             * First Name
+             * Last Name
+             * Date
+             * Desk Specs
+             *  - width
+             *  - depth
+             *  - material
+             *  - drawers
+             * Total Price
+             * *
+             */
+
+            DataTable data = new DataTable();
+
+            data.Columns.Add("Customer Name");
+            data.Columns.Add("Order Date");
+            data.Columns.Add("Desk Width");
+            data.Columns.Add("Desk Depth");
+            data.Columns.Add("Total Price");
+
+            foreach(DeskQuote quote in quotes)
+            {
+                data.Rows.Add(quote.firstName + " " + quote.lastName, quote.currentDate, quote.desk.Width, quote.desk.Depth, quote.getTotal(quote.desk));
+            }
+
+            searchGridView.DataSource = data;
         }
 
         private void viewQuoteExitButton_Click(object sender, EventArgs e)
