@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace MegaDesk_Gale
 {
+    public static class FormState
+    {
+        public static Form MainPage;
+    }
     static class Program
     {
         /// <summary>
