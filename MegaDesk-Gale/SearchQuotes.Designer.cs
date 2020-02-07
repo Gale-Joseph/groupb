@@ -79,7 +79,7 @@
             this.searchGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.searchGridView.Location = new System.Drawing.Point(17, 112);
             this.searchGridView.Name = "searchGridView";
-            this.searchGridView.Size = new System.Drawing.Size(655, 372);
+            this.searchGridView.Size = new System.Drawing.Size(545, 372);
             this.searchGridView.TabIndex = 55;
             // 
             // SearchQuotes
