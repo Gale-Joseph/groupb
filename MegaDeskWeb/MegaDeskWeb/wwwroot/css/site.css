@@ -7,15 +7,9 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
+/* Provide sufficient contrast against dark background */
 a {
   color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -54,13 +48,15 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    background: #8C8581;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: #8C8581;
 }
 .footer {
   position: absolute;
@@ -69,3 +65,45 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+#landingpg {
+    margin-top: 50px;
+}
+
+#welcomeimg {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #dbd8d7;
+}
+
+a:link, a:visited {
+    color: #401607;
+}
+
+a:hover {
+    color: #8C4318;
+}
+
+a:active {
+    color: #BF8C60;
+}
+
+bg-dark {
+    background-color: #6b6561;
+}
+
+th {
+    background-color: #6b6561;
+}
+
+.mtlimg {
+    width: 200px;
+    padding-bottom: 20px;
+}
+
+.imagetable td {
+    padding: 0px 20px 0px;
+}
+
