@@ -5,6 +5,7 @@
     ViewData["Title"] = "Create";
 }
 
+
 <h1>Create</h1>
 
 <h4>Quote</h4>
@@ -13,6 +14,12 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quote.quoteDate" class="control-label"></label>
+                <input asp-for="Quote.quoteDate" class="form-control" value="@(DateTime.Today.Year.ToString() + "-" + DateTime.Today.Month.ToString("00") + "-"
++ DateTime.Today.Day.ToString("00"))" />
+                <span asp-validation-for="Quote.quoteDate" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Quote.firstname" class="control-label"></label>
                 <input asp-for="Quote.firstname" class="form-control" />
@@ -25,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.width" class="control-label"></label>
-                <input asp-for="Quote.width" class="form-control" />
+                <input asp-for="Quote.width" class="form-control" name="width" />
                 <span asp-validation-for="Quote.width" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.drawers" class="control-label"></label>
-                <input asp-for="Quote.drawers" class="form-control" />
+                <input asp-for="Quote.drawers" class="form-control" id="Drawers" />
                 <span asp-validation-for="Quote.drawers" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,7 +57,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.total" class="control-label"></label>
-                <input asp-for="Quote.total" class="form-control" />
+                <input asp-for="Quote.total" class="form-control"/>
                 <span asp-validation-for="Quote.total" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -59,6 +66,10 @@
         </form>
     </div>
 </div>
+
+<script>
+    
+</script>
 
 <div>
     <a asp-page="Index">Back to List</a>

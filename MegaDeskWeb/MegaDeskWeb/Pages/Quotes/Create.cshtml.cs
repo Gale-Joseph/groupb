@@ -35,7 +35,7 @@ namespace MegaDeskWeb
             {
                 return Page();
             }
-
+            Quote.total = 200;
             _context.Quote.Add(Quote);
             await _context.SaveChangesAsync();
 
