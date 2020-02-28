@@ -43,6 +43,9 @@ namespace MegaDeskWeb
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            var total = QuoteTotal.get(Quote.depth, Quote.width, Quote.surfaceMaterial, Quote.drawers, Quote.rushDelivery);
+            Quote.total = total;
+
             if (!ModelState.IsValid)
             {
                 return Page();

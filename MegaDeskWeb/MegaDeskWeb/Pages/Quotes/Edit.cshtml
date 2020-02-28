@@ -16,7 +16,8 @@
             <input type="hidden" asp-for="Quote.ID" />
             <div class="form-group">
                 <label asp-for="Quote.quoteDate" class="control-label"></label>
-                <input asp-for="Quote.quoteDate" class="form-control" />
+                <input asp-for="Quote.quoteDate" class="form-control" value="@(DateTime.Today.Year.ToString() + "-" + DateTime.Today.Month.ToString("00") + "-"
++ DateTime.Today.Day.ToString("00"))" />
                 <span asp-validation-for="Quote.quoteDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,18 +47,24 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.surfaceMaterial" class="control-label"></label>
-                <input asp-for="Quote.surfaceMaterial" class="form-control" />
+                <select asp-for="Quote.surfaceMaterial" class="form-control">
+                    <option value="oak">Oak</option>
+                    <option value="laminate">Laminate</option>
+                    <option value="pine">Pine</option>
+                    <option value="rosewood">Rosewood</option>
+                    <option value="veneer">Veneer</option>
+                </select>
                 <span asp-validation-for="Quote.surfaceMaterial" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quote.rushDelivery" class="control-label"></label>
-                <input asp-for="Quote.rushDelivery" class="form-control" />
+                <select asp-for="Quote.rushDelivery" class="form-control">
+                    <option value=0>0</option>
+                    <option value=3>3</option>
+                    <option value=5>5</option>
+                    <option value=7>7</option>
+                </select>
                 <span asp-validation-for="Quote.rushDelivery" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quote.total" class="control-label"></label>
-                <input asp-for="Quote.total" class="form-control" />
-                <span asp-validation-for="Quote.total" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

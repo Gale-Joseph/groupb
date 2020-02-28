@@ -28,5 +28,7 @@ namespace MegaDeskWeb.Models
         public int rushDelivery { get; set; }
         [Display(Name = "Total")]
         public double total { get; set; }
+        [Display(Name = "Width2")]
+        public int width2 { get; set; }
     }
 }

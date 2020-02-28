@@ -12,6 +12,8 @@ namespace MegaDeskWeb
 {
     public class CreateModel : PageModel
     {
+        
+
         private readonly MegaDeskWeb.Data.MegaDeskWebContext _context;
 
         public CreateModel(MegaDeskWeb.Data.MegaDeskWebContext context)
@@ -35,7 +37,9 @@ namespace MegaDeskWeb
             {
                 return Page();
             }
-            Quote.total = 200;
+
+            var total = QuoteTotal.get(Quote.depth,Quote.width,Quote.surfaceMaterial, Quote.drawers,Quote.rushDelivery);
+            Quote.total = total;
             _context.Quote.Add(Quote);
             await _context.SaveChangesAsync();
 
