@@ -2,9 +2,20 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    ViewBag.HideNavBar = true;
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">MegaDesk 3.0</h1>
+    <div id="landingpg">
+        <form style="display: inline" action="../Quotes/Index" method="get">
+            <button type="submit" class="btn btn-primary btn-lg">View Quotes</button>
+        </form>
+        <form style="display: inline" action="../Quotes/Create" method="get">
+            <button type="submit" class="btn btn-primary btn-lg">Add a Quote</button>
+        </form>
+
+    </div>
+    <img src="~/images/desk.jpg" alt="handmade wood desk" id="welcomeimg" />
 </div>

@@ -41,7 +41,7 @@
                 <span asp-validation-for="Quote.depth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.drawers" class="control-label"></label>
+                <label>Drawers</label>
                 <input asp-for="Quote.drawers" class="form-control" id="Drawers" />
                 <span asp-validation-for="Quote.drawers" class="text-danger"></span>
             </div>
@@ -73,16 +73,43 @@
             </div>
         </form>
     </div>
+
+    <div class="col">
+        <table class="imagetable">
+            <tr>
+                <td>Oak</td>
+                <td>Laminate</td>
+            </tr>
+            <tr>
+                <td><img src="~/images/oak.jpg" alt="oak" class="mtlimg" /></td>
+                <td><img src="~/images/laminate.jpg" alt="laminate" class="mtlimg" /></td>
+            </tr>
+            <tr>
+                <td>Pine</td>
+                <td>Veneer</td>
+            </tr>
+            <tr>
+                <td><img src="~/images/pine.jpg" alt="pine" class="mtlimg" /></td>
+                <td><img src="~/images/veneer.jpg" alt="veneer" class="mtlimg" /></td>
+            </tr>
+            <tr>
+                <td>Rosewood</td>
+            </tr>
+            <tr>
+                <td><img src="~/images/rosewood.jpg" alt="rosewood" class="mtlimg" /></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
-<script>
-    
-</script>
+    <script>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+    </script>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div>
+        <a asp-page="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
