@@ -22,7 +22,8 @@ namespace MeetingPlanner.Controllers
         // GET: Speakers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Speakers.ToListAsync());
+            var churchContext = _context.Speakers.Include(s => s.Meeting);
+            return View(await churchContext.ToListAsync());
         }
 
         // GET: Speakers/Details/5
@@ -34,6 +35,7 @@ namespace MeetingPlanner.Controllers
             }
 
             var speaker = await _context.Speakers
+                .Include(s => s.Meeting)
                 .FirstOrDefaultAsync(m => m.SpeakerID == id);
             if (speaker == null)
             {
@@ -46,6 +48,7 @@ namespace MeetingPlanner.Controllers
         // GET: Speakers/Create
         public IActionResult Create()
         {
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingID", "MeetingID");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace MeetingPlanner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SpeakerID,FirstName,LastName,Topic,MeetingDate")] Speaker speaker)
+        public async Task<IActionResult> Create([Bind("SpeakerID,FirstName,LastName,Topic,MeetingDate,MeetingID")] Speaker speaker)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace MeetingPlanner.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingID", "MeetingID", speaker.MeetingID);
             return View(speaker);
         }
 
@@ -78,6 +82,7 @@ namespace MeetingPlanner.Controllers
             {
                 return NotFound();
             }
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingID", "MeetingID", speaker.MeetingID);
             return View(speaker);
         }
 
@@ -86,7 +91,7 @@ namespace MeetingPlanner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SpeakerID,FirstName,LastName,Topic,MeetingDate")] Speaker speaker)
+        public async Task<IActionResult> Edit(int id, [Bind("SpeakerID,FirstName,LastName,Topic,MeetingDate,MeetingID")] Speaker speaker)
         {
             if (id != speaker.SpeakerID)
             {
@@ -113,6 +118,7 @@ namespace MeetingPlanner.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingID", "MeetingID", speaker.MeetingID);
             return View(speaker);
         }
 
@@ -125,6 +131,7 @@ namespace MeetingPlanner.Controllers
             }
 
             var speaker = await _context.Speakers
+                .Include(s => s.Meeting)
                 .FirstOrDefaultAsync(m => m.SpeakerID == id);
             if (speaker == null)
             {

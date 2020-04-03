@@ -19,7 +19,7 @@ namespace MeetingPlanner.Data
 
             var meetings = new Meeting[]
             {
-                new Meeting{MeetingID=DateTime.Parse("2020-04-05"), Conducting="Bishop Blackfield", OpenHymn="Come Let Us",OpenPrayer="Maggie Smith",SacramentHymn="Jesus the very",MiddleHymn="Kroger Family Number",CloseHymn="Abide With Me", ClosePrayer="Jay Homer" }
+                new Meeting{MeetingID=DateTime.Parse("2020-04-05"), Conducting="Bishop Blackfield", OpenHymn="Come Let Us",OpenPrayer="Maggie Smith",SacramentHymn="Jesus the very",MiddleHymn="Kroger Family Number",CloseHymn="Abide With Me", ClosePrayer="Jay Homer"}
 
             };
 

@@ -16,6 +16,9 @@ namespace MeetingPlanner.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public DateTime MeetingID { get; set; }
 
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int MeetingNum { get; set; }
+
         public string Conducting { get; set; }
 
         public string OpenHymn { get; set; }

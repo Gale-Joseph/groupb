@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.MeetingID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Conducting)
             </th>
             <th>
@@ -40,6 +43,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.MeetingID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Conducting)
             </td>
             <td>
@@ -61,9 +67,9 @@
                 @Html.DisplayFor(modelItem => item.ClosePrayer)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MeetingID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MeetingID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MeetingID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MeetingID.ToString("o")">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MeetingID.ToString("o")">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MeetingID.ToString("o")">Delete</a>
             </td>
         </tr>
 }
