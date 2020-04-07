@@ -22,7 +22,10 @@ namespace MeetingPlanner.Controllers
         // GET: Meetings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Meetings.ToListAsync());
+
+            return View(await _context.Meetings.Include(i => i.Speakers).ToListAsync());
+          
+            //return View(await _context.Meetings.ToListAsync());
         }
 
         // GET: Meetings/Details/5
@@ -33,8 +36,9 @@ namespace MeetingPlanner.Controllers
                 return NotFound();
             }
 
-            var meeting = await _context.Meetings
+            var meeting = await _context.Meetings.Include(i => i.Speakers)
                 .FirstOrDefaultAsync(m => m.MeetingID == id);
+               
             if (meeting == null)
             {
                 return NotFound();
