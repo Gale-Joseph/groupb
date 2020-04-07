@@ -42,8 +42,13 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Baloo Thambi 2', cursive;
+}
+
+h1, h2, h3 {
+    font-family: 'Gotu', sans-serif;
 }
 .footer {
   position: absolute;
